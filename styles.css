@@ -5,8 +5,9 @@
     font-family: 'Kumbh Sans', sans-serif;
   }
   
+  /* navbar */
   .navbar {
-    background: linear-gradient(to bottom, #ffffff, #ffffff); /* Light to darker gray gradient */
+    background: #ffffff;
     height: 100px;
     display: flex;
     justify-content: center;
