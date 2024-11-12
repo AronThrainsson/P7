@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BabyFoodCheck</title>
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <!-- Here you can add a logo -->
 </head>
 <body>
@@ -46,7 +46,7 @@
     <div class="services_container">
         <div class="services_card">
             <h2>Heavy Metals</h2>
-            <p></p>
+            <p>Your random number is {{ number }}!</p>
             <button>Learn More</button>
         </div>
         <div class="services_card">
@@ -105,6 +105,6 @@
   </section>
 </div>
 
-<script src="../app.js"></script>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>
 </html>

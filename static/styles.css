@@ -299,7 +299,7 @@
     width: 400px;
     border-radius: 4px;
     background-image:
-      url('/images/pic5.jpg');
+      url('/static/images/pic5.jpg');
     background-size: cover;
     position: relative;
     color: #fff;
@@ -308,13 +308,13 @@
   /* pesticides service card */
   .services_card:nth-child(2) {
     background-image:
-      url('/images/pic4.jpg');
+      url('/static/images/pic4.jpg');
   }
 
   /* microplastic service card */
   .services_card:nth-child(3) {
     background-image: 
-    url('/images/micro.jpg');
+    url('/static/images/micro.jpg');
   }
   
   /* headers on service cards */
