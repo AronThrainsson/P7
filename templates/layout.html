@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BabyFoodCheck</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <!--FLASK: <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> -->
+
+    <!--Here you can add a logo-->
+</head>
+
+<body>
+<!--Navbar Section-->
+<nav class="navbar">
+    <div class="navbar_container">
+        <a href="/" id="navbar_logo"><i class="fas fa-gem"></i>BabyFoodCheck</a>
+        <div class="navbar_toggle" id="mobile-menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </div>
+        <ul class="navbar_menu">
+            <li class="navbar_item"><a href="search.html" class="navbar_links">Most common toxins in babyfood</a></li>
+            <li class="navbar_item"><a href="expert.html" class="navbar_links">What do the experts say?</a></li>
+            <li class="navbar_item"><a href="toxins.html" class="navbar_links">General advice</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- body section -->
+{% block body %}
+{% endblock %}
+
+<!-- Footer Section -->
+<div class="footer_container">
+  <div class="footer_links">
+      <div class="footer_link-wrapper">
+
+        <div class="footer_service">
+            <h2>Partnered with Clean Label Project</h2>
+
+        </div>
+          <div class="footer_service">
+              <h2>Help</h2>
+              <a href="/" class="footer-link">FAQ</a>
+              <a href="/" class="footer-link">Contact</a>
+          </div>
+          <div class="footer_service">
+              <h2>About</h2>
+              <a href="/" class="footer-link">About us</a>
+          </div>
+      </div>
+      </div>
+  </div>
+
+<!--FLASK: <script src="{{ url_for('static', filename='app.js') }}"></script> -->
+<script src="../static/app.js"></script>
+</body>
+</html>

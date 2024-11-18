@@ -9,6 +9,6 @@ def index():
     number = random.randint(1, 10)
     return render_template("index.html", number=number)
 
-@app.route("/goodbye")
+@app.route("/expert")
 def bye():
-    return "Goodbye!"
+    return render_template("expert2.html")
