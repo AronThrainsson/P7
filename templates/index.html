@@ -9,101 +9,60 @@
 </head>
 <body>
 
-<!-- Navbar Section here -->
+<!--Navbar section here-->
 <nav class="navbar">
     <div class="navbar_container">
-        <a href="/" id="navbar_logo"><i class="fas fa-gem"></i>BabyFoodCheck</a>
+            <a href="index.html"><img src="../static/images/babyfoodcheck_logo.png" alt="BabyFoodCheck Logo"></a> 
         <div class="navbar_toggle" id="mobile-menu">
-            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            <span class="bar"></span><span sclass="bar"></span><span class="bar"></span>
         </div>
         <ul class="navbar_menu">
-            <li class="navbar_item"><a href="index.html" class="navbar_links">Home</a></li>
             <li class="navbar_item"><a href="common.html" class="navbar_links">Most common toxins</a></li>
-            <li class="navbar_item"><a href="expert.html" class="navbar_links">Experts advice</a></li>
+            <li class="navbar_item"><a href="expert" class="navbar_links">Experts advice</a></li>
             <li class="navbar_item"><a href="toxins.html" class="navbar_links">General advice</a></li>
-            <li class="navbar_btn"><a href="sign.html" class="button">Sign Up</a></li>
         </ul>
     </div>
 </nav>
 
-<!-- Hero Section -->
+<!-- Hero Section-->
 <section class="services">
         <div class="search-container">
             <input type="text" class="search-box" placeholder="Search">
             <h3>Most searched:</h3>
             <div class="buttons">
-                <button class="search-button">Ella's Kitchen</button>
-                <button class="search-button">Semper</button>
-                <button class="search-button">Arla Baby&Me</button>
+                <button class="search-button">Once Upon a Farm</button>
+                <button class="search-button">Baby Gourmet</button>
+                <button class="search-button">Little Spoon</button>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Services Section -->
-<div class="services">
-    <h1>Learn more about toxic chemicals</h1>
-    <div class="services_container">
-        <div class="services_card">
-            <h2>Heavy Metals</h2>
-            <p>Your random number is {{ number }}!</p>
-            <button>Learn More</button>
-        </div>
-        <div class="services_card">
-            <h2>Pesticides</h2>
-            <p></p>
-            <button>Learn More</button>
-        </div>
-        <div class="services_card">
-            <h2>Microplastics</h2>
-            <p></p>
-            <button>Learn More</button>
-        </div>
-    </div>
-</div>
+
 
 <!-- Footer Section -->
 <div class="footer_container">
-  <div class="footer_links">
-      <div class="footer_link--wrapper">
-          <div class="footer_link--items">
-              <h2>Transparency</h2>
-              <a href="/">Our Work</a>
-              <a href="/">Careers</a>
-              <a href="/">Non-profit</a>
-          </div>
-          <div class="footer_link--items">
-              <h2>Contacts</h2>
-              <a href="/">Support</a>
-              <a href="/">Donations</a>
-              <a href="/">Whistleblower</a>
-          </div>
+    <div class="footer_left">
+      <div class="left_footer">
+        <p class="website_rights">© BabyFoodCheck 2024. <br> All rights reserved</p>
       </div>
-      <div class="footer_link--wrapper">
-          <div class="footer_link--items">
-              <h2>Add Products</h2>
-              <a href="/">Brand</a>
-              <a href="/">Label</a>
-              <a href="/">Producer</a>
-          </div>
+      <div class="left_footer_img">
+        <img src="../static/images/cleanlabel.png" alt="Clean Label Logo">
+        <p class="footer_img_text">Partnered with the <br> Clean Label Project</p>
       </div>
-  </div>
-  <section class="social_media">
-      <div class="social_media--wrap">
-          <div class="footer_logo">
-              <a href="/" id="footer_logo"><i class="fas fa-gem"></i>BabyFoodCheck</a>
-          </div>
-          <p class="website_rights">© BabyFoodCheck 2024. All rights reserved</p>
-          <div class="social_icons">
-              <a class="social_icon--link" href="/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-              <a class="social_icon--link" href="/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-              <a class="social_icon--link" href="/" target="_blank" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
-              <a class="social_icon--link" href="/" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-              <a class="social_icon--link" href="/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          </div>
+    </div>
+    <div class="footer_link-wrapper">
+      <div class="footer_link-items">
+        <h2>Help</h2>
+        <a href="/">FAQ</a>
+        <a href="/">Contact</a>
       </div>
-  </section>
-</div>
+      <div class="footer_link-items">
+        <h2>About</h2>
+        <a href="/">About us</a>
+      </div>
+    </div>
+  </div>  
 
 <script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>
