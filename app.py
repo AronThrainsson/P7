@@ -10,5 +10,13 @@ def index():
     return render_template("index.html", number=number)
 
 @app.route("/expert")
-def bye():
+def expert():
     return render_template("expert.html")
+
+@app.route("/common")
+def common():
+    return render_template("common.html")
+
+@app.route("/toxins")
+def toxins():
+    return render_template("toxins.html")
