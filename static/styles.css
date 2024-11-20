@@ -387,7 +387,6 @@
 .services_container {
 display: flex;
 justify-content: center;
-flex-wrap: wrap;
 }
 /* service card and heavy metals card */
 .services_card {
@@ -441,17 +440,17 @@ flex-wrap: wrap;
   font-size: 1rem;
 }
 
-/* learn more button in service cards */
+/* learn more button in service cards*/
 .services_card button {
   color: #000000;
   border: none;
-  outline: none;
   border-radius: 4px;
-  position: absolute;
+  outline: none;
   background-color: transparent;
-  top: 440px;
-  left: 30px;
   font-size: 1rem;
+  display: block;
+  margin-bottom: 10px; 
+  text-align: left;
 }
 
 /* hover on the learn more button */
@@ -466,4 +465,9 @@ flex-wrap: wrap;
   transition: 0.2s ease-in;
   cursor: pointer;
   background-color: #f5d7ad;
+}
+
+/* To make the mouse to a pointer */
+.open-link {
+  cursor: pointer;
 }
