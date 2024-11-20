@@ -23,3 +23,27 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   });
 });
+
+// Function to handle "Most searched" button clicks
+function search(query) {
+  const form = document.getElementById('search-form');
+  const searchBox = form.querySelector('.search-box');
+  searchBox.value = query; // Set the query value
+  form.submit(); // Submit the form
+}
+
+// Automatically handle Enter key in the search box
+document.querySelector('.search-box').addEventListener('keypress', function (event) {
+  if (event.key === 'Enter') {
+      event.preventDefault(); // Prevent default behavior
+      document.getElementById('search-form').submit(); // Submit the form
+  }
+});
+
+// Add event listeners to "Most searched" buttons
+document.querySelectorAll('.search-button').forEach(button => {
+  button.addEventListener('click', function () {
+      const query = this.getAttribute('data-query');
+      search(query);
+  });
+});

@@ -26,16 +26,19 @@
 
 <!-- Hero Section-->
 <section class="services">
-        <div class="search-container">
-            <input type="text" class="search-box" placeholder="Search">
-            <h3>Most searched:</h3>
-            <div class="buttons">
-                <button class="search-button">Once Upon a Farm</button>
-                <button class="search-button">Baby Gourmet</button>
-                <button class="search-button">Little Spoon</button>
-            </div>
-        </div>
-    </div>
+  <div class="search-container">
+      <!-- Form to enable submission -->
+      <form action="/search" method="GET" id="search-form">
+          <input type="text" class="search-box" name="query" placeholder="Search" required>
+      </form>
+
+      <h3>Most searched:</h3>
+      <div class="buttons">
+          <button class="search-button" data-query="Once Upon a Farm">Once Upon a Farm</button>
+          <button class="search-button" data-query="Baby Gourmet">Baby Gourmet</button>
+          <button class="search-button" data-query="Little Spoon">Little Spoon</button>
+      </div>
+  </div>
 </section>
 
 

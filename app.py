@@ -20,3 +20,15 @@ def common():
 @app.route("/toxins")
 def toxins():
     return render_template("toxins.html")
+
+#search function
+@app.route('/search', methods=['GET'])
+def search():
+    query = request.args.get('query')  # Get the search query from the URL
+    if query:
+        # Replace with your search logic, e.g., database lookup or API call
+        return f"Results for '{query}'"
+    return "No query entered."
+
+if __name__ == '__main__':
+    app.run(debug=True)
