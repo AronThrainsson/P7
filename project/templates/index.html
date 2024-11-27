@@ -32,8 +32,8 @@
   </p>
       <div class="search-container">
         <!-- form get -->
-      <form action="/search" method="GET" id="search-form">
-          <input type="text" class="search-box" name="query" placeholder="Search" required>
+      <form id="search-form">
+          <input type="text" id="keyword" name="query" placeholder="Search" required>
       </form>
     <div class="under_boxes">
       <header>Most searched:</header>
@@ -69,6 +69,34 @@
   </div>
 </div>  
 
-<script src="{{ url_for('static', filename='app.js') }}"></script>
+<script>
+  // Håndter form-submission
+  document.getElementById('searchForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      // Hent søgeterm fra inputfeltet
+      const keyword = document.getElementById('keyword').value;
+
+      // Send forespørgsel til Flask-backend
+      const response = await fetch(`/search?keyword=${encodeURIComponent(keyword)}`);
+      const results = await response.json();
+
+      // Vis resultaterne
+      const resultList = document.getElementById('resultList');
+      resultList.innerHTML = ''; // Ryd tidligere resultater
+      results.forEach(result => {
+          const li = document.createElement('li');
+          li.innerHTML = `
+              <strong>Brand:</strong> ${result.brand_name}, 
+              <strong>Product:</strong> ${result.product_name}, 
+              <strong>Store:</strong> ${result.store_name}<br>
+              <strong>Toxic Metals:</strong> ${result.toxic_metals || 'None'}, 
+              <strong>Pesticides:</strong> ${result.pesticides || 'None'}, 
+              <strong>Microplastics:</strong> ${result.microplastics || 'None'}
+          `;
+          resultList.appendChild(li);
+      });
+  });
+  </script>
 </body>
 </html>
