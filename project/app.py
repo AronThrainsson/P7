@@ -13,7 +13,7 @@ def query_database(search_term):
     query = """
         SELECT 
             babyfoodlabels.name AS brand_name,
-            babyfoodlabels.product AS product_name,
+            babyfoodlabels.products AS product_name,
             store.name AS store_name,
             healthiness.toxic_metals,
             healthiness.pesticides,
@@ -23,7 +23,7 @@ def query_database(search_term):
         JOIN store ON healthiness.store_id = storeID
         WHERE 
             babyfoodlabels.name LIKE ? OR 
-            babyfoodlabels.product LIKE organic pasta meals OR 
+            babyfoodlabels.products LIKE ? OR 
             store.name LIKE ?
     """
     cursor.execute(query, (f"%{search_term}%", f"%{search_term}%", f"%{search_term}%"))
