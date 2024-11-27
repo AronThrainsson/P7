@@ -1,13 +1,19 @@
 import random
+import sqlite3
 
-from flask import Flask, render_template
+from flask import Flask, request, render_template, jsonify
 
 app = Flask(__name__)
 
+# Function to connect to the database
+def connect_db():
+    connection = sqlite3.connect('movies.db')
+    connection.row_factory = sqlite3.Row  # Allows accessing columns by name
+    return connection
+
 @app.route("/")
 def index():
-    number = random.randint(1, 10)
-    return render_template("index.html", number=number)
+    return render_template("index.html")
 
 @app.route("/expert")
 def expert():
@@ -21,14 +27,29 @@ def common():
 def toxins():
     return render_template("toxins.html")
 
-#search function
+if __name__ == '__main__':
+    app.run(debug=True)
+
+#NEW
+
+# Home route to render the main page
+# Search route
 @app.route('/search', methods=['GET'])
 def search():
     query = request.args.get('query')  # Get the search query from the URL
-    if query:
-        # Replace with your search logic, e.g., database lookup or API call
-        return f"Results for '{query}'"
-    return "No query entered."
+    if not query:
+        return jsonify({"error": "No query provided"}), 400
 
-if __name__ == '__main__':
-    app.run(debug=True)
+    conn = connect_db()
+    cursor = conn.cursor()
+
+    # Query the database for movies with titles containing the search word
+    cursor.execute(
+        "SELECT title, year FROM movies WHERE title LIKE ?",
+        (f"%{query}%",)
+    )
+    results = [dict(row) for row in cursor.fetchall()]  # Convert rows to dictionaries
+
+    conn.close()
+
+    return jsonify(results)  # Return results as JSON

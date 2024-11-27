@@ -47,3 +47,46 @@ document.querySelectorAll('.search-button').forEach(button => {
       search(query);
   });
 });
+
+// FUNCTION TO PERFORM SEARCH NEW
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('search-form');
+  const resultsDiv = document.getElementById('results');
+
+  // Function to perform the search
+  function performSearch(query) {
+      fetch(`/search?query=${encodeURIComponent(query)}`)
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error("Search failed");
+              }
+              return response.json();
+          })
+          .then(data => {
+              resultsDiv.innerHTML = ''; // Clear previous results
+
+              if (data.error) {
+                  resultsDiv.textContent = data.error;
+              } else if (data.length === 0) {
+                  resultsDiv.textContent = "No results found.";
+              } else {
+                  data.forEach(movie => {
+                      const div = document.createElement('div');
+                      div.textContent = `Title: ${movie.title}, Director: ${movie.director}, Year: ${movie.year}`;
+                      resultsDiv.appendChild(div);
+                  });
+              }
+          })
+          .catch(error => {
+              console.error('Error:', error);
+              resultsDiv.textContent = "An error occurred. Please try again.";
+          });
+  }
+
+  // Handle form submission
+  form.addEventListener('submit', (event) => {
+      event.preventDefault(); // Prevent the default form submission
+      const query = form.querySelector('.search-box').value;
+      performSearch(query);
+  });
+});

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>BabyFoodCheck</title>
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<!--Navbar section here-->
+<nav class="navbar">
+    <div class="navbar_container">
+            <a href="index.html"><img src="images/babyfoodcheck_logo.png" alt="BabyFoodCheck Logo"></a> 
+        <div class="navbar_toggle" id="mobile-menu">
+            <span class="bar"></span><span sclass="bar"></span><span class="bar"></span>
+        </div>
+        <ul class="navbar_menu">
+          <li class="navbar_item"><a href="common.html" class="navbar_links">Most common toxins</a></li>
+          <li class="navbar_item"><a href="expert.html" class="navbar_links">Expert advice</a></li>
+          <li class="navbar_item"><a href="general.html" class="navbar_links">General advice</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero Section-->
+<section class="services">
+  <p><strong>Trusted by experts</strong>
+    <br>BabyFoodCheck has partnered with health professionals to 
+    <br>ensure we provide you with the most accurate and reliable data.
+  </p>
+      <div class="search-container">
+        <!-- form get -->
+      <form action="/search" method="GET" id="search-form">
+          <input type="text" class="search-box" name="query" placeholder="Search" required>
+      </form>
+    <div class="under_boxes">
+      <header>Most searched:</header>
+      <div class="buttons">
+          <button class="search-button" data-query="Once Upon a Farm">Once Upon a Farm</button>
+          <button class="search-button" data-query="Baby Gourmet">Baby Gourmet</button>
+          <button class="search-button" data-query="Little Spoon">Little Spoon</button>
+      </div>
+    </div>
+</section>
+
+<!-- Footer Section -->
+<div class="footer_container">
+  <div class="footer_left">
+    <div class="left_footer">
+      <p class="website_rights">© BabyFoodCheck 2024. <br> All rights reserved</p>
+    </div>
+    <div class="left_footer_img">
+      <img src="images/cleanlabel.png" alt="Clean Label Logo">
+      <p class="footer_img_text">Partnered with the <br> Clean Label Project</p>
+    </div>
+  </div>
+  <div class="footer_link--wrapper">
+    <div class="footer_link--items">
+      <h3>Help</h3>
+      <a href="/">FAQ</a>
+      <a href="/">Contact</a>
+    </div>
+    <div class="footer_link--items">
+      <h3>About</h3>
+      <a href="/">About us</a>
+    </div>
+  </div>
+</div>  
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
