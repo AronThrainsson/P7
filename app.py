@@ -3,6 +3,24 @@ import sqlite3
 
 app = Flask(__name__)
 
+# Render funktioner til hjemmesiderne
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+@app.route("/expert")
+def expert():
+    return render_template("expert.html")
+
+@app.route("/common")
+def common():
+    return render_template("common.html")
+
+@app.route("/toxins")
+def toxins():
+    return render_template("toxins.html")
+
+
 # Funktion til at søge i databasen
 def query_database(search_term):
     conn = sqlite3.connect('babyfoodlabels.db')
@@ -31,10 +49,6 @@ def query_database(search_term):
     conn.close()
 
     return [dict(row) for row in results]
-
-@app.route('/')
-def index():
-    return render_template('index.html')
 
 # API-endepunkt til søgning
 @app.route('/search', methods=['GET'])
