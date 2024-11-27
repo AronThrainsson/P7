@@ -16,9 +16,9 @@ def expert():
 def common():
     return render_template("common.html")
 
-@app.route("/toxins")
+@app.route("/general")
 def toxins():
-    return render_template("toxins.html")
+    return render_template("general.html")
 
 
 # Funktion til at søge i databasen
