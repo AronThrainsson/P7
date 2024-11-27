@@ -3,7 +3,13 @@ import sqlite3
 
 app = Flask(__name__)
 
-# Render funktioner til hjemmesiderne
+# Function to connect to the database
+def get_db_connection():
+    conn = sqlite3.connect('babyfoodlabels.db')
+    conn.row_factory = sqlite3.Row  # Enables dictionary-like access to rows
+    return conn
+
+# Render functions for web pages
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -20,42 +26,38 @@ def common():
 def toxins():
     return render_template("general.html")
 
-
-# Funktion til at søge i databasen
-def query_database(search_term):
-    conn = sqlite3.connect('babyfoodlabels.db')
-    conn.row_factory = sqlite3.Row  # For at returnere resultater som dicts
-    cursor = conn.cursor()
-
-    # SQL-forespørgsel for at matche søgeterm
-    query = """
-        SELECT 
-            babyfoodlabels.name AS brand_name,
-            babyfoodlabels.products AS product_name,
-            store.name AS store_name,
-            healthiness.toxic_metals,
-            healthiness.pesticides,
-            healthiness.microplastics
-        FROM healthiness
-        JOIN babyfoodlabels ON healthiness.label_id = babyfoodlabels.labelID
-        JOIN store ON healthiness.store_id = store.storeID
-        WHERE 
-            babyfoodlabels.name LIKE ? OR 
-            babyfoodlabels.products LIKE ? OR 
-            store.name LIKE ?
-    """
-    cursor.execute(query, (f"%{search_term}%", f"%{search_term}%", f"%{search_term}%"))
-    results = cursor.fetchall()
-    conn.close()
-
-    return [dict(row) for row in results]
-
-# API-endepunkt til søgning
+# Search route
 @app.route('/search', methods=['GET'])
-def search():
-    search_term = request.args.get('keyword', '')  # Hent søgeterm fra forespørgslen
-    results = query_database(search_term)
-    return jsonify(results)
+def search_labels():
+    query = request.args.get('query')
+
+    if not query:
+        return "Please provide a search term", 400
+
+    try:
+        conn = get_db_connection()  # Use the centralized function
+        cursor = conn.cursor()
+
+        # Search query
+        cursor.execute("""
+            SELECT * FROM babyfoodlabels 
+            WHERE name LIKE ? OR products LIKE ?
+        """, (f'%{query}%', f'%{query}%'))
+        results = cursor.fetchall()
+        conn.close()
+
+        # Convert results to a list of dictionaries
+        labels = [dict(row) for row in results]
+
+        # Return JSON or render results page
+        if not labels:
+            return f"No results found for '{query}'", 404
+        return jsonify(labels)
+
+    except Exception as e:
+        # Log the error and return a generic error message
+        print(f"Error occurred: {e}")
+        return "An error occurred while processing your request.", 500
 
 if __name__ == '__main__':
     app.run(debug=True)
