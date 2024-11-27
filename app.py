@@ -37,8 +37,8 @@ def query_database(search_term):
             healthiness.pesticides,
             healthiness.microplastics
         FROM healthiness
-        JOIN babyfoodlabels ON healthiness.label_id = labelID
-        JOIN store ON healthiness.store_id = storeID
+        JOIN babyfoodlabels ON healthiness.label_id = babyfoodlabels.labelID
+        JOIN store ON healthiness.store_id = store.storeID
         WHERE 
             babyfoodlabels.name LIKE ? OR 
             babyfoodlabels.products LIKE ? OR 
