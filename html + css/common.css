@@ -1,0 +1,58 @@
+.content {
+  flex: 1;
+  padding: 50px;
+}
+
+  .flex_container {
+    display: flex;
+    justify-content: space-between;
+    margin: 70px;
+    gap: 50px;
+  }
+  
+.toxic {
+  border: 0.5px solid #2c2a2a;
+  padding: 10px;
+  background-color: #FFD788;
+  flex: 1;
+}
+
+.toxic p {
+  font-size: 12px;
+  padding-top: 5px;
+  padding: 20px;
+}
+
+.toxic a {
+  font-weight: bold;
+  color: green;
+  text-align: center;
+}
+
+
+/* Mobile (for screens less than 600px) */
+@media screen and (max-width: 599px) {
+  .content {
+    padding: 20px;
+  }
+
+  .flex_container {
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px;
+  }
+
+  .toxic {
+    padding: 15px;
+    font-size: 12px;
+  }
+
+  .toxic p {
+    font-size: 12px;
+    padding: 15px;
+  }
+
+  .toxic a {
+    font-size: 14px;
+  }
+}

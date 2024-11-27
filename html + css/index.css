@@ -1,0 +1,111 @@
+/* Services searchbar etc */
+.services {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.services p {
+  margin-bottom: 20px;
+  line-height: 20px;
+  margin-left: -280px;
+  font-size: 14px;
+}
+
+header {
+  text-align: left;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* the searchbar */
+.search-box {
+  width: 120%;
+  max-width: 700px;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 5px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+  border: none;
+  justify-content: center;
+  margin-left: -40px;
+  align-items: center;
+}
+
+/* the buttons beneath searchbar */
+.under_boxes {
+  margin-top: 20px;
+  margin-right: 100px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* placement of buttons under searchbar */
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.search-button {
+  background-color: #FFD788;
+  color: #000;
+  border-radius: 5px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+  border: none;
+  padding: 10px 10px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* hover effect on buttons under searchbar */
+.search-button:hover {
+  background-color: rgb(177, 205, 127);
+  transform: scale(1.05);
+}
+
+/* Mobile (for screens less than 600px) */
+@media screen and (max-width: 600px) {
+  .services {
+    height: auto;
+    padding: 20px;
+  }
+
+  .services p {
+    margin-left: 0;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  header {
+    font-size: 14px;
+  }
+
+  .search-box {
+    width: 100%;
+    max-width: 400px;
+    font-size: 16px;
+    margin-left: 0;
+  }
+
+  .under_boxes {
+    margin-right: 0;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .search-button {
+    width: 100%;
+    font-size: 14px;
+    padding: 8px 0;
+  }
+}

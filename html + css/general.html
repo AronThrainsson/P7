@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BabyFoodCheck</title>
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="general.css">
+</head>
+<body>
+
+<!--Navbar section here-->
+<nav class="navbar">
+    <div class="navbar_container">
+            <a href="index.html"><img src="images/babyfoodcheck_logo.png" alt="BabyFoodCheck Logo"></a> 
+        <div class="navbar_toggle" id="mobile-menu">
+            <span class="bar"></span><span sclass="bar"></span><span class="bar"></span>
+        </div>
+        <ul class="navbar_menu">
+          <li class="navbar_item"><a href="common.html" class="navbar_links">Most common toxins</a></li>
+          <li class="navbar_item"><a href="expert.html" class="navbar_links">Expert advice</a></li>
+          <li class="navbar_item"><a href="general.html" class="active navbar_links">General advice</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- indholdet -->
+    <div class="content">
+        <h1>General advice</h1>
+        <div class="flex_container">
+            <div class="tips">
+                <h2>TIP 1</h2>
+                <br><h4><strong>Understanding the ingredients.</strong></h4>
+                <ul><br>
+                  <li><strong>Choose natural ingredients: </strong>Opt for baby food with minimal added sugars, artificial flavors, and preservatives.
+                    The simpler the ingredient list, the better, as fewer additives are often better for your baby’s developing digestive system.</li>
+                  <li><strong>Look out for allergens: </strong>Introduce new foods one at a time and wait a few days to observe for 
+                  any allergic reactions, especially with common allergens like dairy, eggs, and nuts.</li>
+                  <li><strong>Avoid heavy metals: </strong>Some baby foods, particularly rice-based products, may contain higher 
+                  levels of arsenic. Diversifying your baby’s diet with different grains like oats or barley can help minimize this risk.</li>
+                  </ul>
+              </div>
+            <div class="tips">
+                <h2>TIP 2</h2>
+                <br><h4><strong>Best Practices for Feeding Infants Over 6 Months.</strong></h4>
+                <ul><br>
+                  <li><strong>Introduce solids at 6 months: </strong>Start with single-ingredient purees such as fruits (like apples or pears), 
+                  vegetables (like carrots or sweet potatoes), and cereals. </li>
+                <li><strong>Gradually increase texture: </strong>As your baby becomes accustomed to solids, slowly move from purees to thicker 
+                  textures and small, soft chunks to encourage chewing.</li>
+                <li><strong>Breast milk or formula first: </strong>Continue breastfeeding or formula feeding as the primary source of nutrition 
+                  until your baby reaches one year.</li>
+                </ul>
+              </div>
+            <div class="tips">
+                <h2>TIP 3</h2>
+                <br><h4><strong>What to look for in your baby’s food.</strong></h4>
+                <ul><br>
+                <li><strong>Organic and clean options: </strong>Organic baby foods are less likely to contain harmful chemicals, such as pesticides, 
+                  making them a safer choice.</li>
+                <li><strong>No added sugars or salt: </strong>Avoid baby foods with added sugar or salt, as these can overwhelm babies' 
+                  undeveloped taste buds and kidneys.</li>
+                <li><strong>Certifications and safety standards: </strong>Look for baby food brands that meet safety standards to ensure the 
+                  products are free from harmful contaminants like lead, cadmium, and mercury.</li>
+                </ul>
+              </div>
+          </div>
+      </div>
+
+<!-- Footer Section -->
+<div class="footer_container">
+  <div class="footer_left">
+    <div class="left_footer">
+      <p class="website_rights">© BabyFoodCheck 2024. <br> All rights reserved</p>
+    </div>
+    <div class="left_footer_img">
+      <img src="images/cleanlabel.png" alt="Clean Label Logo">
+      <p class="footer_img_text">Partnered with the <br> Clean Label Project</p>
+    </div>
+  </div>
+  <div class="footer_link--wrapper">
+    <div class="footer_link--items">
+      <h3>Help</h3>
+      <a href="/">FAQ</a>
+      <a href="/">Contact</a>
+    </div>
+    <div class="footer_link--items">
+      <h3>About</h3>
+      <a href="/">About us</a>
+    </div>
+  </div>
+</div>  
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
