@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 # Function to connect to the database
 def get_db_connection():
-    conn = sqlite3.connect('babyfoodlabels.db')
+    conn = sqlite3.connect('babyfoodlabels.db')  # Corrected path
     conn.row_factory = sqlite3.Row  # Enables dictionary-like access to rows
     return conn
 
@@ -35,7 +35,7 @@ def search_labels():
         return "Please provide a search term", 400
 
     try:
-        conn = get_db_connection()  # Use the centralized function
+        conn = get_db_connection() 
         cursor = conn.cursor()
 
         # Search query
@@ -49,10 +49,8 @@ def search_labels():
         # Convert results to a list of dictionaries
         labels = [dict(row) for row in results]
 
-        # Return JSON or render results page
-        if not labels:
-            return f"No results found for '{query}'", 404
-        return jsonify(labels)
+        # Render the results in an HTML template
+        return render_template("results.html", query=query, labels=labels)
 
     except Exception as e:
         # Log the error and return a generic error message
