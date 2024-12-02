@@ -1,0 +1,59 @@
+.content {
+  flex: 1;
+  padding: 50px;
+}
+
+.flex_container {
+    display: flex;
+    justify-content: space-between;
+    margin: 70px;
+    gap: 30px;
+  }
+
+.tips {
+  border: 0.5px solid #2c2a2a;
+  padding: 10px;
+  background-color: #FFD788;
+  flex: 1;
+}
+
+h4 {
+  text-align: center;
+  font-size: 12px;
+}
+
+.tips ul {
+  padding-left: 20px;
+}
+
+.tips ul li{
+  font-size: 12px;
+  line-height: 18px;
+  padding: 10px;
+}
+
+/* Mobile (for screens less than 600px) */
+@media screen and (max-width: 599px) {
+  .content {
+    padding: 20px;
+  }
+
+  .flex_container {
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px;
+  }
+
+  .tips {
+    padding: 15px;
+  }
+
+  .tips ul {
+    padding-left: 15px;
+  }
+
+  .tips ul li {
+    font-size: 12px;
+    padding: 8px;
+  }
+}

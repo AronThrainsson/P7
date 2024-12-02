@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BabyFoodCheck</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='global.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='grocery_list.css') }}">
+</head>
+<body>
+
+<!--Navbar section here-->
+<nav class="navbar">
+  <div class="navbar_container">
+      <a href="/">
+          <img src="{{ url_for('static', filename='images/babyfoodcheck_logo.png') }}" alt="BabyFoodCheck Logo">
+      </a>
+      <ul class="navbar_menu">
+        <li class="navbar_item"><a href="/grocery_list" class="active navbar_links">Grocery List</a></li>
+        <li class="navbar_item"><a href="/categories" class="navbar_links">Categories</a></li>
+        <li class="navbar_item"><a href="/common" class="navbar_links">Most common toxins</a></li>
+        <li class="navbar_item"><a href="/expert" class="navbar_links">Expert advice</a></li>
+        <li class="navbar_item"><a href="/general" class="navbar_links">General advice</a></li>
+    </ul>    
+  </div>
+</nav>
+
+<h1>Your Grocery List</h1>
+<ul>
+  <!--item a variable name used to represent each dictionary in the grocery_item list-->
+    {% for item in grocery_items %}
+        <li>
+            <img src="{{ product.images }}" alt="{{ product.name }}" width="100">
+            <strong>{{ product.name }}</strong> ({{ product.brand_name }}) <br>
+            <p>Kcal: {{ product.kcal }}</p>
+            <p>Heavy Metals: {{ product.heavy_metals }}</p>
+            <p>Pesticides: {{ product.pesticides }}</p>
+            <p>Microplastics: {{ product.microplastics }}</p>
+
+            <form action="{{ url_for('remove_product', product_id=product.id) }}" method="POST">
+              <button type="submit">Remove from Grocery List</button>
+          </form>
+        </li>
+    {% endfor %}
+</ul>
+
+<!-- Footer Section -->
+<div class="footer_container">
+    <div class="footer_left">
+      <div class="left_footer">
+        <p class="website_rights">© BabyFoodCheck 2024. <br> All rights reserved</p>
+      </div>
+      <div class="left_footer_img">
+        <img src="{{ url_for('static', filename='images/cleanlabel.png') }}" alt="Clean Label Logo">
+        <p class="footer_img_text">Partnered with the <br> Clean Label Project</p>
+      </div>
+    </div>
+    <div class="footer_link--wrapper">
+      <div class="footer_link--items">
+        <h3>Help</h3>
+        <a href="/">FAQ</a>
+        <a href="/">Contact</a>
+      </div>
+      <div class="footer_link--items">
+        <h3>About</h3>
+        <a href="/">About us</a>
+      </div>
+    </div>
+  </div> 

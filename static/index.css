@@ -1,0 +1,256 @@
+/* Services searchbar etc */
+.services {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 80vh;
+}
+
+.services p {
+  justify-content: left;
+  margin-bottom: 10px;
+  line-height: 20px;
+  margin-left: -300px;
+  font-size: 14px;
+}
+
+/* the buttons over the searchbar */
+.over_boxes {
+  margin-top: 70px;
+  margin-left: -165px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+/* placement of buttons over searchbar */
+.buttons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.most {
+  color: #3a3939;
+  background-color: #D6EFF2; 
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: -40px;
+  border: none;
+}
+
+.search-button {
+  background-color: #FFD788;
+  color: #000;
+  border-radius: 5px;
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.25);
+  border: none;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* hover effect on buttons under searchbar */
+.search-button:hover {
+  background-color: rgb(177, 205, 127);
+  transform: scale(1.05);
+}
+
+/* the searchbar */
+.search-container {
+  width: 100%;
+  max-width: 700px;
+  padding: 10px;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* the search input*/
+#keyword {
+  flex-grow: 1;
+  width: 100%;
+  max-width: 700px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+  border: none;
+}
+
+.s-button {
+  position: absolute;
+  width: 20%;
+  height: 40px;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 8px 16px;
+  background-color: #45a049;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.s-button:hover {
+  background-color: #6fad72;
+}
+
+
+
+/* filters */
+.filter-container {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  margin-left: -380px;
+}
+
+.filter-dropdown {
+  position: relative;
+}
+
+header {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.dropdown-btn {
+  background-color: #fff;
+  padding: 5px 20px;
+  font-size: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #000;
+}
+
+/* Initially hide dropdown */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  margin-top: 5px;
+  top: 80%;
+}
+
+/* When clicked, the dropdown stays visible */
+.filter-dropdown.active .dropdown-content {
+  display: block;
+}
+
+/* Keep the dropdown visible when the dropdown is focused or hovered */
+.filter-dropdown:focus-within .dropdown-content,
+.filter-dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Adjust position for when clicking */
+.filter-dropdown.active .dropdown-content {
+  display: block;
+}
+
+/* style for checkboxes */
+input[type="checkbox"] {
+  -webkit-appearance: none; /* Remove the default checkbox styling */
+  -moz-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #FFD788; /* Border color */
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Change the color when checked */
+input[type="checkbox"]:checked {
+  background-color: #45a049; 
+  border-color: #45a049; /* Border color when checked */
+}
+
+/* Add a checkmark when the checkbox is checked */
+input[type="checkbox"]:checked::after {
+  content: "✔"; /* Unicode checkmark */
+  position: absolute;
+  top: 0;
+  left: 3px;
+  font-size: 14px;
+  color: white; /* Checkmark color */
+}
+
+/* Change the background color when hovered */
+input[type="checkbox"]:hover {
+  background-color: #f2d08d; /* Background color on hover */
+  border-color: #FFD788; /* Border color on hover */
+}
+
+label {
+  display: block;
+  font-size: 12px;
+}
+
+input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+
+/* Mobile (for screens less than 600px) */
+@media screen and (max-width: 600px) {
+  .services {
+    height: auto;
+    padding: 20px;
+  }
+
+  .services p {
+    margin-left: 0;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  header {
+    font-size: 14px;
+  }
+
+  .search-box {
+    width: 100%;
+    max-width: 400px;
+    font-size: 16px;
+    margin-left: 0;
+  }
+
+  .over_boxes {
+    margin-right: 0;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .search-button {
+    width: 100%;
+    font-size: 14px;
+    padding: 8px 0;
+  }
+}
