@@ -89,13 +89,24 @@
   border-radius: 5px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
   border: none;
-  margin-left: -240px;
+  margin-left: -250px;
 }
 
+.search-container {
+  display: flex; /* Use flexbox to align items horizontally */
+  align-items: center; /* Vertically center the items */
+  justify-content: space-between; /* Ensure even spacing */
+  gap: 40px; /* Space between elements (search box and button) */
+  position: relative; /* Allow for precise positioning if needed */
+  width: 150%; /* Make the container stretch full width */
+  max-width: 800px; /* Optional: limit the container's width */
+  margin: 0 auto; /* Center the container if it has a max-width */
+  padding: 10px; /* Optional: add padding around the container */
+}
 
 .s-button {
-  position: absolute;
-  width: 30px;
+  position: relative;
+  width: 20px;
   height: 40px;
   right: 0;
   top: 50%;
@@ -222,8 +233,6 @@ input[type="checkbox"] {
     border: none;
     cursor: pointer;
     padding: 0;
-    align-items: center;
-    justify-content: center;
   }
   
   
