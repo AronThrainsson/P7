@@ -215,6 +215,27 @@ input[type="checkbox"] {
   margin-right: 8px;
 }
 
+  /* Style for the scan button */
+  #scan-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
+  #scan-logo {
+    width: 40px; /* Adjust image size */
+    height: 40px; /* Adjust image size */
+  }
+  
+  /* Hover effect for the scan button */
+  #scan-button:hover #scan-logo {
+    transform: scale(1.1); /* Slightly enlarge the image */
+  }
 
 /* Mobile (for screens less than 600px) */
 @media screen and (max-width: 600px) {
@@ -257,25 +278,4 @@ input[type="checkbox"] {
     padding: 8px 0;
   }
 
-  /* Style for the scan button */
-#scan-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Style for the scan logo */
-#scan-logo {
-  width: 20px; /* Adjust image size */
-  height: 20px; /* Adjust image size */
-}
-
-/* Hover effect for the scan button */
-#scan-button:hover #scan-logo {
-  transform: scale(1.1); /* Slightly enlarge the image */
-}
 }
