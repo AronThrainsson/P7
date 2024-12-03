@@ -20,6 +20,9 @@
       <form action="/search" id="search-form" method="GET" class="search-form">
         <input type="text" id="keyword" name="query" placeholder="Search for baby food or product..." required>
         <button type="submit" class="s-button">Search</button>
+        <a href="/camera" id="scan-button">
+          <img src="{{ url_for('static', filename='images/scan.png') }}" alt="Scan" id="scan-logo">
+        </a>
       </form>     
     </div>    
     <!-- Filter Section -->
