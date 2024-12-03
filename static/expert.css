@@ -1,0 +1,56 @@
+.content {
+  flex: 1;
+  padding: 30px;
+}
+
+.flex_container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.advice {
+  border: 0.5px solid #2c2a2a;
+  background-color: #FFD788;
+  flex: 1;
+  padding-top: 10px;
+}
+
+.advice p {
+  font-size: 12px;
+  line-height: 18px;
+  padding: 15px;
+  padding-top: 5px;
+}
+
+.advice a {
+  font-size: 12px;
+  font-weight: bold;
+  color: green;
+  text-align: center;
+}
+
+/* Mobile (for screens less than 600px) */
+@media screen and (max-width: 599px) {
+  .content {
+    padding: 20px;
+  }
+
+  .flex_container {
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px;
+  }
+
+  .advice {
+    padding: 15px;
+  }
+
+  .advice p {
+    font-size: 12px;
+    padding: 15px;
+  }
+
+  .advice a {
+    font-size: 12px;
+  }
+}

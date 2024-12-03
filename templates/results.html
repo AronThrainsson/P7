@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Search Bar under navbar -->
+<div class="search-container">
+    <form action="{{ url_for('search') }}" method="GET" class="search-form">
+      <input type="text" id="keyword" name="query" placeholder="Search..." value="{{ request.args.get('query', '') }}" class="search-input" />
+      <button type="submit" class="s-button">Search</button>
+    </form>     
+</div>    
+
+<!-- Results container -->
+<div class="results-container">
+    <h2>Search Results for "{{ query }}"</h2>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% else %}
+        <ul>
+            {% for product_group in products %}
+                {% for product in product_group %}
+                    <li>
+                        <a href="{{ url_for('product_details', product_name=product['product']) }}" class="product-link">
+                            <div class="product-item">
+                                <!-- Display product image if available -->
+                                {% if product.image %}
+                                    <img src="{{ url_for('static', filename=product['image']) }}" alt="{{ product['product'] }}" class="product-image">
+                                {% endif %}
+
+                                <!-- Brand name and product name -->
+                                <div class="product-text">
+                                    <strong>{{ product ['brand'] }}:</strong>
+                                    <span>{{ product['product'] }}</span>
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+
+{% endblock %}
