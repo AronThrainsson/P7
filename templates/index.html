@@ -120,5 +120,6 @@ function getSelectedProducts() {
     return Array.from(productCheckboxes).map(checkbox => checkbox.value);
 }
 </script>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
 
 {% endblock %}
