@@ -1,8 +1,14 @@
 from flask import Flask, render_template, request, jsonify
 import sqlite3
+import base64
+from PIL import Image
+from io import BytesIO
+import easyocr
+import numpy as np
 from categories import get_category_products, save_product_silently, remove_from_grocery_list
 
 app = Flask(__name__)
+reader = easyocr.Reader(['en', 'da'])
 app.secret_key = 'your_secret_key'  # For session management
 
 # Function to connect to the database
@@ -27,6 +33,35 @@ def common():
 @app.route("/general")
 def general():
     return render_template("general.html")
+
+@app.route("/camera")
+def camera():
+    return render_template("camera.html")
+
+# OCR scanning function
+@app.route('/scan', methods=['POST'])
+def scan():
+    try:
+        data = request.get_json()
+        image_data = data.get('image')
+        if not image_data:
+            return jsonify({'success': False, 'message': 'No image data provided.'})
+
+        # Decode Base64 image
+        image_data = base64.b64decode(image_data.split(',')[1])
+        image = Image.open(BytesIO(image_data))
+
+        # Convert PIL Image to NumPy array
+        image_array = np.array(image)
+
+        # Perform OCR
+        result = reader.readtext(image_array, detail=0)  # EasyOCR accepts NumPy arrays
+        extracted_text = " ".join(result)
+
+        return jsonify({'success': True, 'text': extracted_text})
+    except Exception as e:
+        print(f"Error during OCR: {e}")  # Log the error for debugging
+        return jsonify({'success': False, 'message': str(e)})
 
 
 # Search route for brands and products from babyfoodlabels.db
