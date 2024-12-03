@@ -13,5 +13,9 @@ install flask:
 Check if flask is installed
     pip show flask
 
-to run when flask is installed
-    flask run
+pip install easyocr
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+pip install pillow
+pip install numpy
+
+pip list
