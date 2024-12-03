@@ -43,5 +43,31 @@
               </div>
           </div>
       </div>
+   <div class="filter-container">
+      <header>Filter by:</header>
+      <!-- Store Dropdown Filter -->
+       <div class="filter-dropdown">
+        <button class="dropdown-btn">Store ▼</button>
+        <div class="dropdown-content">
+          <label><input type="checkbox" class="store-option" value="target"> Target</label>
+          <label><input type="checkbox" class="store-option" value="walmart"> Walmart</label>
+          <label><input type="checkbox" class="store-option" value="costco"> Costco</label>
+          <label><input type="checkbox" class="store-option" value="wholefoods"> Whole Foods</label>
+          <label><input type="checkbox" class="store-option" value="kroger"> Kroger</label>
+          <label><input type="checkbox" class="store-option" value="albertsons"> Altbertsons</label>
+        </div>
+      </div>
+      <!-- Product Dropdown Filter -->
+       <div class="filter-dropdown">
+        <button class="dropdown-btn">Product ▼</button>
+        <div class="dropdown-content">
+          <label><input type="checkbox" class="product-option" value="organic"> Organic</label>
+          <label><input type="checkbox" class="product-option" value="puree"> Puree</label>
+          <label><input type="checkbox" class="product-option" value="moss"> Moss</label>
+          <label><input type="checkbox" class="product-option" value="toxic"> Toxic babyfood</label>
+          <label><input type="checkbox" class="product-option" value="snacks"> Snacks</label>
+        </div>
+      </div>
+    </div>
 
       {% endblock %}
