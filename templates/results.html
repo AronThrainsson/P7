@@ -39,5 +39,34 @@
         </ul>
     {% endif %}
 </div>
+<div class="filter-container1">
+    <form action="{{ url_for('search') }}" method="GET" id="filter-form">
+        <header>Filter by:</header>
 
+        <!-- Store Dropdown Filter -->
+        <div class="filter-dropdown1">
+            <button type="button" class="dropdown-btn1">Store ▼</button>
+            <div class="dropdown-content1">
+                <label><input type="checkbox" name="store" value="target"> Target</label>
+                <label><input type="checkbox" name="store" value="walmart"> Walmart</label>
+                <label><input type="checkbox" name="store" value="costco"> Costco</label>
+                <label><input type="checkbox" name="store" value="wholefoods"> Whole Foods</label>
+                <label><input type="checkbox" name="store" value="kroger"> Kroger</label>
+                <label><input type="checkbox" name="store" value="albertsons"> Albertsons</label>
+            </div>
+        </div>
+
+        <!-- Product Dropdown Filter -->
+        <div class="filter-dropdown1">
+            <button type="button" class="dropdown-btn1">Product ▼</button>
+            <div class="dropdown-content1">
+                <label><input type="checkbox" name="product" value="organic"> Organic</label>
+                <label><input type="checkbox" name="product" value="puree"> Puree</label>
+                <label><input type="checkbox" name="product" value="moss"> Moss</label>
+                <label><input type="checkbox" name="product" value="toxic"> Toxic babyfood</label>
+                <label><input type="checkbox" name="product" value="snacks"> Snacks</label>
+            </div>
+        </div>
+    </form>
+</div>
 {% endblock %}
