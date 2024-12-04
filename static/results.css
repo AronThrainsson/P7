@@ -129,3 +129,65 @@
 .results-container li + li {
   margin-left: 10px;
 }
+
+.filter-container1 {
+  position: absolute;
+  top: 117px;
+  right: 20px;
+  width: 250px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.filter-dropdown1 {
+  position: relative;
+}
+
+header {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.dropdown-btn1 {
+  background-color: #fff;
+  padding: 5px 20px;
+  font-size: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #000;
+}
+
+/* Initially hide dropdown */
+.dropdown-content1 {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  margin-top: 5px;
+  top: 80%;
+}
+
+/* When clicked, the dropdown stays visible */
+.filter-dropdown1.active .dropdown-content1 {
+  display: block;
+}
+
+/* Keep the dropdown visible when the dropdown is focused or hovered */
+.filter-dropdown1:focus-within .dropdown-content1,
+.filter-dropdown1:hover .dropdown-content1 {
+  display: block;
+}
+
+/* Adjust position for when clicking */
+.filter-dropdown1.active .dropdown-content1 {
+  display: block;
+}
