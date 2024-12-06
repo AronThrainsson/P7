@@ -1,0 +1,113 @@
+/* Container for the grocery list */
+.grocery-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.find-at {
+  color: #45a049;
+  font-weight: bold;
+}
+
+.grocery-list-container h1 {
+  margin-bottom: 40px;
+  margin-top: 20px;
+  text-align: center;
+  color: #000;
+}
+
+.grocery-list-container .no-products-message {
+  font-size: 18px;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 50px;
+  color: #ff0000;
+}
+
+.grocery-list-container a.login-link,
+.grocery-list-container a.signup-link {
+  font-weight: bold;
+  color: #45a049; 
+  text-align: center;
+  display: block;
+  margin: 10px 0;
+}
+
+/* Grocery list styling */
+.grocery-list-container ul {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+  gap: 10px;
+  width: 100%; 
+}
+
+/* Each product item in the grocery list */
+.grocery-list-container li {
+  flex: 1 1 300px;
+  max-width: 300px; 
+  box-sizing: border-box;
+  margin: 10px; 
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+/* Container for product card */
+.product-card {
+  position: relative; 
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Product image styling */
+.product-card img {
+  width: 100%;
+  max-width: 100px;
+  height: auto;
+  margin: 0 auto 10px;
+  display: block;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+/* Remove button styling */
+.remove-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #FFD788;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.remove-button:hover {
+  background-color: rgb(177, 205, 127);
+  transform: scale(1.05);
+  color: #000;
+}
+
+.remove-button.removed {
+  background-color: rgb(177, 205, 127);
+  color: #000;
+}
+
+.remove-button.removed:hover {
+  background-color: rgb(177, 205, 127);
+}
