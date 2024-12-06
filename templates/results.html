@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Search and Filter Container under navbar -->
+<div class="search-filter-container">
+    <!-- Search Form -->
+    <form action="{{ url_for('search') }}" method="GET" class="search-form">
+      <input type="text" id="keyword" name="query" placeholder="Search..." value="{{ request.args.get('query', '') }}" class="search-input" />
+      <button type="submit" class="s-button">Search</button>
+    </form>     
+
+    <!-- Filter Container -->
+    <div class="filter-container1">
+        <form action="{{ url_for('search') }}" method="GET" id="filter-form">
+            <header>Filter by:</header>
+    
+            <!-- Store Dropdown Filter -->
+            <div class="filter-dropdown1">
+                <button type="button" class="dropdown-btn1">Store ▼</button>
+                <div class="dropdown-content1">
+                    <label><input type="checkbox" name="store" value="target" {% if 'target' in request.args.getlist('store') %}checked{% endif %}> Target</label>
+                    <label><input type="checkbox" name="store" value="walmart" {% if 'walmart' in request.args.getlist('store') %}checked{% endif %}> Walmart</label>
+                    <label><input type="checkbox" name="store" value="costco" {% if 'costco' in request.args.getlist('store') %}checked{% endif %}> Costco</label>
+                    <label><input type="checkbox" name="store" value="wholefoods" {% if 'wholefoods' in request.args.getlist('store') %}checked{% endif %}> Whole Foods</label>
+                    <label><input type="checkbox" name="store" value="kroger" {% if 'kroger' in request.args.getlist('store') %}checked{% endif %}> Kroger</label>
+                    <label><input type="checkbox" name="store" value="albertsons" {% if 'albertsons' in request.args.getlist('store') %}checked{% endif %}> Albertsons</label>
+                </div>
+            </div>
+
+            <!-- Product Dropdown Filter -->
+            <div class="filter-dropdown1">
+                <button type="button" class="dropdown-btn1">Product ▼</button>
+                <div class="dropdown-content1">
+                    <label><input type="checkbox" name="product" value="organic" {% if 'organic' in request.args.getlist('product') %}checked{% endif %}> Organic</label>
+                    <label><input type="checkbox" name="product" value="puree" {% if 'puree' in request.args.getlist('product') %}checked{% endif %}> Puree</label>
+                    <label><input type="checkbox" name="product" value="moss" {% if 'moss' in request.args.getlist('product') %}checked{% endif %}> Moss</label>
+                    <label><input type="checkbox" name="product" value="toxic" {% if 'toxic' in request.args.getlist('product') %}checked{% endif %}> Toxic babyfood</label>
+                    <label><input type="checkbox" name="product" value="snacks" {% if 'snacks' in request.args.getlist('product') %}checked{% endif %}> Snacks</label>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>    
+
+<!-- Results container -->
+<div class="results-container">
+    <h2>Search Results for "{{ query }}"</h2>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% else %}
+        <ul id="resultList">
+            {% for product_group in products %}
+                {% for product in product_group %}
+                    <li>
+                        <a href="{{ url_for('product_details', product_name=product['product']) }}" class="product-link">
+                            <div class="product-item">
+                                {% if product.image %}
+                                    <img src="{{ url_for('static', filename=product['image']) }}" alt="{{ product['product'] }}" class="product-image">
+                                {% endif %}
+                                <div class="product-text">
+                                    <strong>{{ product['brand'] }}:</strong>
+                                    <span>{{ product['product'] }}</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+
+<script>
+    // Handle search button click
+    const buttons = document.querySelectorAll('.search-button');
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            const query = this.getAttribute('data-query');
+            document.getElementById('keyword').value = query;
+            document.getElementById('search-form').submit();
+        });
+    });
+
+    document.getElementById('search-form').addEventListener('submit', async (event) => {
+        const keyword = document.getElementById('keyword').value;
+        const selectedStores = getSelectedStores();
+        const selectedProducts = getSelectedProducts();
+
+        // If there are filters selected, prevent default form submission
+        if (selectedStores.length > 0 || selectedProducts.length > 0) {
+            event.preventDefault();
+            
+            // Create a query string with keyword, selected stores, and selected products
+            let queryString = `/search?query=${encodeURIComponent(keyword)}`;
+            
+            // Add store filter to the query string
+            if (selectedStores.length > 0) {
+                queryString += `&stores=${encodeURIComponent(selectedStores.join(','))}`;
+            }
+
+            // Add product filter to the query string
+            if (selectedProducts.length > 0) {
+                queryString += `&products=${encodeURIComponent(selectedProducts.join(','))}`;
+            }
+
+            // Fetch filtered results
+            const response = await fetch(queryString);
+            const results = await response.json();
+
+            const resultList = document.getElementById('resultList');
+            resultList.innerHTML = ''; // Clear previous results
+            
+            results.forEach(result => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <strong>Brand:</strong> ${result.brand}, 
+                    <strong>Product:</strong> ${result.product}, 
+                    <strong>Store:</strong> ${result.store}<br>
+                    <strong>Toxic Metals:</strong> ${result.toxic_metals || 'None'}, 
+                    <strong>Pesticides:</strong> ${result.pesticides || 'None'}, 
+                    <strong>Microplastics:</strong> ${result.microplastics || 'None'}
+                `;
+                resultList.appendChild(li);
+            });
+        }
+    });
+
+    // Checkboxes for the filters
+    function getSelectedStores() {
+        const storeCheckboxes = document.querySelectorAll('.store-option:checked');
+        return Array.from(storeCheckboxes).map(checkbox => checkbox.value);
+    }
+
+    function getSelectedProducts() {
+        const productCheckboxes = document.querySelectorAll('.product-option:checked');
+        return Array.from(productCheckboxes).map(checkbox => checkbox.value);
+    }
+
+    // Add event listeners to checkboxes to submit the form when a checkbox is selected
+    document.querySelectorAll('.dropdown-content1 input[type="checkbox"]').forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            const query = document.getElementById('keyword').value;
+            const form = document.getElementById('filter-form');
+            const queryInput = document.createElement('input');
+            queryInput.type = 'hidden';
+            queryInput.name = 'query';
+            queryInput.value = query;
+            form.appendChild(queryInput);
+            form.submit();
+        });
+    });
+</script>
+
+{% endblock %}
