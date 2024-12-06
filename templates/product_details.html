@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="headline">
+<h1>{{ product['brand'] }} - {{ product['product'] }}</h1>
+</div>
+<div class="content-wrapper">
+  <div class="products">
+    <img src="{{ url_for('static', filename=product['image']) }}" alt="Product Image">
+    <div class="prod_contents">
+      <ul>
+        <li>
+          <h2>Ingredient list:</h2>
+          <div class="product_detail">
+            <strong>Microplastics:</strong> 
+            {% if product['microplastics'] %}
+              {{ product['microplastics'] }}
+            {% else %}
+              None
+            {% endif %}
+          </div>
+          <div class="product_detail">
+            <strong>Toxic Metals:</strong> 
+            {% if product['toxic_metals'] %}
+              {{ product['toxic_metals'] }}
+            {% else %}
+              None
+            {% endif %}
+          </div>
+          <div class="product_detail">
+            <strong>Pesticides:</strong> 
+            {% if product['pesticides'] %}
+              {{ product['pesticides'] }}
+            {% else %}
+              None
+            {% endif %}
+          </div>
+          <div class="product_detail_1">
+            <strong>Protein & other ingredients:</strong> 
+            {% if product['protein_name'] %}
+              {{ product['protein_name'] }}
+            {% else %}
+              None
+            {% endif %}
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Info boxes -->
+  <div class="information-box">
+    <div class="product_box">
+      <h4>Heavy Metals</h4>
+      <p>Some information about heavy metals found in the product.</p>
+    </div>
+    <div class="product_box">
+      <h4>Microplastics</h4>
+      <p>Some information about microplastics found in the product.</p>
+    </div>
+    <div class="product_box">
+      <h4>Pesticides</h4>
+      <p>Some information about pesticides found in the product.</p>
+    </div>
+    <div class="product_box_1">
+      <h4>Protein & other ingredients</h4>
+      <p>Some information about protein and other ingredients.</p>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

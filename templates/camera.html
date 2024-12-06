@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='camera.css') }}">
+<section class="camera-section">
+  <h1>Scan your product</h1>
+  <video id="camera-feed" autoplay playsinline></video>
+  <button id="capture-button">Capture</button>
+  <canvas id="snapshot" style="display: none;"></canvas>
+</section>
+<script>
+  // Populate the search box with scanned text when on the home page
+  document.addEventListener('DOMContentLoaded', () => {
+    const scannedText = localStorage.getItem('scannedText');
+    if (scannedText) {
+      const searchBox = document.getElementById('keyword');
+      if (searchBox) {
+        searchBox.value = scannedText.toLowerCase(); // Convert to lowercase and set the value
+        localStorage.removeItem('scannedText'); // Clear the stored text
+      }
+    }
+
+    // Initialize camera functionality
+    const cameraFeed = document.getElementById('camera-feed');
+    const captureButton = document.getElementById('capture-button');
+    const canvas = document.getElementById('snapshot');
+
+    let stream;
+
+    // Function to start the camera
+    if (cameraFeed && captureButton && canvas) {
+      navigator.mediaDevices
+        .getUserMedia({ video: { facingMode: 'environment' } }) // Use rear camera
+        .then((mediaStream) => {
+          stream = mediaStream;
+          cameraFeed.srcObject = stream;
+        })
+        .catch((err) => {
+          console.error('Error accessing camera:', err);
+          alert('Unable to access camera. Please check your permissions.');
+        });
+
+      // Function to capture the image
+      captureButton.addEventListener('click', () => {
+        const context = canvas.getContext('2d');
+        canvas.width = cameraFeed.videoWidth;
+        canvas.height = cameraFeed.videoHeight;
+        context.drawImage(cameraFeed, 0, 0, canvas.width, canvas.height);
+
+        // Stop the camera
+        stream.getTracks().forEach((track) => track.stop());
+
+        // Convert the canvas to a Base64 image
+        const imageData = canvas.toDataURL('image/png');
+
+        // Send the image to the backend
+        fetch('/scan', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ image: imageData }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              // Store scanned text temporarily and redirect to the home page
+              localStorage.setItem('scannedText', data.text);
+              window.location.href = '/';
+            } else {
+              alert('Error scanning the image. Please try again.');
+            }
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      });
+    }
+  });
+</script>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="grocery-list-container">
+  <h1>My grocery list</h1>
+  {% if 'user_id' in session %}
+    {% if grocery_items %}
+      <ul>
+        {% for product in grocery_items %}
+          <li>
+            <div class="product-card">
+              <img src="{{ url_for('static', filename=product['images']) }}" alt="{{ product['name'] }}">
+              <strong class="find-at">Find at: {{ product['stores'] }}</strong><br>
+              <br><strong>Brand: {{ product['brand_name'] }} - {{ product['name'] }}</strong><br>
+              <br><strong>Calories:</strong> {{ product['kcal'] }} kcal<br>
+              <strong>Heavy Metals:</strong> {{ product['heavy_metals'] }}<br>
+              <strong>Pesticides:</strong> {{ product['pesticides'] }}<br>
+              <strong>Microplastics:</strong> {{ product['microplastics'] }}<br>
+              <!-- Remove button with AJAX functionality -->
+              <button class="remove-button" data-product-id="{{ product['id'] }}">
+                Remove from 'My grocery list'
+              </button>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="no-products-message">No products added yet.</p>
+    {% endif %}
+  {% else %}
+    <p class="no-products-message">No products added yet.
+      <br>
+      <br><a href="{{ url_for('login') }}" class="login-link">Click to login</a> <br>
+      <br> <strong>OR</strong><br>
+      <br><a href="{{ url_for('signup') }}" class="signup-link">Click to sign up</a> <br>
+  {% endif %}
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  // library used for AJAX interactions - jQuery for effective and efficient AJAX requests
+$(document).ready(function() {
+    $(".remove-button").on("click", function(event) {
+        event.preventDefault();  // Prevent the form from submitting
+        const button = $(this);
+        const productId = button.data("product-id");
+        // Send the AJAX request to remove the product
+        $.ajax({
+            url: "/remove_product/" + productId,
+            method: "POST",
+            success: function(response) {
+                if (response.status === "removed") {
+                    console.log("Product removed successfully");
+                    // Optionally, refresh the page or remove the product from the DOM
+                    location.reload();  // Reload the page to update the grocery list
+                }
+            },
+            error: function() {
+                console.log("Error removing product");
+            }
+        });
+    });
+});
+</script>
+{% endblock %}
